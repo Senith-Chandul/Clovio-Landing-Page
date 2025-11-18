@@ -17,10 +17,18 @@ window.addEventListener("scroll", () => {
     const navbar = document.querySelector(".navbar");
     if (window.scrollY > 50) {
         navbar.style.padding = "1rem 0";
-        navbar.style.background = "rgba(21, 18, 37, 0.95)";
+        if (document.body.getAttribute('data-theme') === 'dark') {
+            navbar.style.background = "rgba(21, 18, 37, 0.95)";
+        } else {
+            navbar.style.background = "rgba(255, 255, 255, 0.95)";
+        }
     } else {
         navbar.style.padding = "1.5rem 0";
-        navbar.style.background = "rgba(21, 18, 37, 0.9)";
+        if (document.body.getAttribute('data-theme') === 'dark') {
+            navbar.style.background = "rgba(21, 18, 37, 0.9)";
+        } else {
+            navbar.style.background = "rgba(255, 255, 255, 0.9)";
+        }
     }
 });
 
@@ -39,6 +47,36 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+});
+
+// Theme Toggle Functionality
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference or respect OS preference
+const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+body.setAttribute('data-theme', savedTheme);
+themeToggle.checked = savedTheme === 'light';
+
+// Update theme when toggle is clicked
+themeToggle.addEventListener('change', function() {
+    if (this.checked) {
+        body.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+    
+    // Update navbar background based on scroll position
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+        if (this.checked) {
+            navbar.style.background = "rgba(255, 255, 255, 0.95)";
+        } else {
+            navbar.style.background = "rgba(21, 18, 37, 0.95)";
+        }
+    }
 });
 
 // Animate elements on scroll

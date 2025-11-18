@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-theme="dark">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -19,6 +19,20 @@
                 <li class="nav-item"><a href="#how-it-works" class="nav-link">How It Works</a></li>
                 <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
                 <li class="nav-item"><a href="#" class="nav-link nav-cta">Get Started Free</a></li>
+                <li class="nav-item theme-toggle-container">
+                    <div class="theme-toggle">
+                        <input type="checkbox" id="theme-toggle" class="theme-checkbox">
+                        <label for="theme-toggle" class="theme-label">
+                            <div class="theme-toggle-track">
+                                <div class="theme-toggle-thumb"></div>
+                            </div>
+                            <span class="theme-icons">
+                                <span class="theme-icon sun">☀️</span>
+                                <span class="theme-icon moon">🌙</span>
+                            </span>
+                        </label>
+                    </div>
+                </li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>

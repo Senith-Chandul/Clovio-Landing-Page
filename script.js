@@ -13,24 +13,29 @@ document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", 
 }));
 
 // Navbar scroll effect
-window.addEventListener("scroll", () => {
+const updateNavbarBackground = () => {
     const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
+    const isScrolled = window.scrollY > 50;
+    const isLightTheme = document.body.getAttribute('data-theme') === 'light';
+    
+    if (isScrolled) {
         navbar.style.padding = "1rem 0";
-        if (document.body.getAttribute('data-theme') === 'dark') {
-            navbar.style.background = "rgba(21, 18, 37, 0.95)";
+        if (isLightTheme) {
+            navbar.style.background = "rgba(252, 255, 252, 0.95)";
         } else {
-            navbar.style.background = "rgba(255, 255, 255, 0.95)";
+            navbar.style.background = "rgba(3, 10, 10, 0.95)";
         }
     } else {
         navbar.style.padding = "1.5rem 0";
-        if (document.body.getAttribute('data-theme') === 'dark') {
-            navbar.style.background = "rgba(21, 18, 37, 0.9)";
+        if (isLightTheme) {
+            navbar.style.background = "rgba(252, 255, 252, 0.9)";
         } else {
-            navbar.style.background = "rgba(255, 255, 255, 0.9)";
+            navbar.style.background = "rgba(3, 10, 10, 0.9)";
         }
     }
-});
+};
+
+window.addEventListener("scroll", updateNavbarBackground);
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -68,16 +73,12 @@ themeToggle.addEventListener('change', function() {
         localStorage.setItem('theme', 'dark');
     }
     
-    // Update navbar background based on scroll position
-    const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
-        if (this.checked) {
-            navbar.style.background = "rgba(255, 255, 255, 0.95)";
-        } else {
-            navbar.style.background = "rgba(21, 18, 37, 0.95)";
-        }
-    }
+    // Update navbar background immediately
+    updateNavbarBackground();
 });
+
+// Initialize navbar background on page load
+updateNavbarBackground();
 
 // Animate elements on scroll
 const observerOptions = {

@@ -21,19 +21,20 @@ const updateNavbarBackground = () => {
     if (isScrolled) {
         navbar.style.padding = "1rem 0";
         if (isLightTheme) {
-            navbar.style.background = "rgba(252, 255, 252, 0.95)";
+            navbar.style.background = "rgba(248, 250, 252, 0.95)";
         } else {
-            navbar.style.background = "rgba(3, 10, 10, 0.95)";
+            navbar.style.background = "rgba(2, 6, 23, 0.95)";
         }
     } else {
         navbar.style.padding = "1.5rem 0";
         if (isLightTheme) {
-            navbar.style.background = "rgba(252, 255, 252, 0.9)";
+            navbar.style.background = "rgba(248, 250, 252, 0.9)";
         } else {
-            navbar.style.background = "rgba(3, 10, 10, 0.9)";
+            navbar.style.background = "rgba(2, 6, 23, 0.9)";
         }
     }
 };
+
 
 window.addEventListener("scroll", updateNavbarBackground);
 
